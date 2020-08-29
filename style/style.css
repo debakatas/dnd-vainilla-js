@@ -1,0 +1,116 @@
+/*
+    deBakatas variables
+*/
+:root {
+    --red: #742b23;
+}
+
+html {
+    background: #000;
+}
+
+* {
+    font-family: 'Joystix', 'Courier New', Courier, monospace !important;
+}
+
+body {
+    z-index: 10;
+    background-size: cover, cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-position: 40% top;
+    position: relative;
+}
+
+#active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: -1;
+    filter: brightness(0.5);
+}
+
+.bg {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+}
+
+#player {
+    position: fixed;
+    bottom: 0%;
+    left: 10%;
+}
+
+#text {
+    color: palegoldenrod;
+    font-size: 4vmin;
+    line-height: 1.4;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: 80vh;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    text-shadow: 5px 5px 0px black;
+}
+
+.stats {
+    --size: 4px;
+    --color: #eee8aa88;
+    border: var(--size) solid var(--color);
+    position: fixed;
+    bottom: var(--size);
+    right: 0;
+    z-index: 100;
+    display: flex;
+    overflow: visible;
+
+    &::after {
+        display: block;
+        border: var(--size) solid var(--color);
+        content: '';
+        height: calc(100% + calc(var(--size) * 2));
+        width: 100%;
+        position: absolute;
+        top: calc(var(--size) * -2);
+        left: 0;
+    }
+}
+
+.life {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        height: 50px;
+    }
+
+    figcaption {
+        font-size: 2rem;
+        color: var(--red);
+        padding-inline: 0.25rem;
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        padding-inline: 1rem;
+        max-height: 50px;
+    }
+}

@@ -1,0 +1,24 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3941547, 2020-08-29T01:01:51-0400
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: JoystixMonospace-Regular by Typodermic
+ * URL: https://www.myfonts.com/fonts/typodermic/joystix/monospace/
+ * Copyright: &amp;#x00A9; 1996-2018 Typodermic Fonts Inc
+ *
+ *
+ *
+ * © 2020 MyFonts Inc
+*/
+
+@font-face {
+    font-family: 'Joystix';
+    src: url('../fonts/font.woff2') format('woff2'),
+        url('../fonts/font.woff') format('woff');
+}

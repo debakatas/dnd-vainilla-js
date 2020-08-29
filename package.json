@@ -1,0 +1,17 @@
+{
+    "name": "dnd-vainilla-js",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:debakatas/dnd-vainilla-js.git",
+    "author": "Nicolas M. Pardo <nicolasm@nikodermus.media>",
+    "license": "MIT",
+    "dependencies": {
+        "parcel": "^2.0.0-beta.1"
+    },
+    "devDependencies": {
+        "postcss-nested": "^4.2.3"
+    },
+    "scripts": {
+        "start": "parcel serve index.html --no-cache -p 3000 --open"
+    }
+}
