@@ -13,5 +13,8 @@
     "scripts": {
         "start": "parcel serve index.html --no-cache -p 3000 --open",
         "build": "parcel build index.html"
-    }
+    },
+    "browserslist": [
+        "since 2018"
+    ]
 }
