@@ -1,37 +1,65 @@
 import { cambion, goblin, vampiro } from './enemies';
 import Enemy from './Enemy';
 import Character from './Character';
+import { pause, bool } from './utils';
 import state from './state';
+import { magicText } from './DOM';
 
-const enemies = [goblin, cambion, vampiro];
+let enemies = [goblin, cambion, vampiro];
 
 const createEnemy = () => {
-    const currentEnemy = new Enemy(enemies[0], () => {
-        gameplay();
+    const randomIndex = Math.floor(Math.random() * enemies.length);
+    const currentEnemy = new Enemy(enemies[randomIndex], async () => {
+        await gameplay();
     });
-    enemies.shift();
+    enemies = enemies.filter((e, index) => index !== randomIndex);
 };
 
-const win = () => {};
+const win = () => {
+    magicText(
+        `
+¡Felicidades caballero!
+Has derrotado a feroces enemigos, y has sobrevido con ${state.character.lp} puntos de vida. Ha estado cerca.
+
+Vuelve en otra ocasión para enfrentarte al mal.
+`
+    );
+};
+
+const fight = async () => {
+    await state.character.inflictDamage();
+    await pause();
+
+    if (state.enemy) await state.enemy.inflictDamage();
+};
 
 const gameplay = async () => {
-    if (state.character.lp && enemies.length) {
-        await state.character.inflictDamage();
+    await pause();
+    const myCase = `${bool(state.enemy)}${bool(state.character.lp)}${bool(
+        enemies.length
+    )}`;
 
-        if (state.enemy) {
-            await state.enemy.inflictDamage();
-
-            if (!state.character.lp) return;
+    switch (myCase) {
+        case '111': {
+            await fight();
+            gameplay();
+            break;
         }
-
-        if (!state.enemy && enemies.length) {
+        case '011': {
             createEnemy();
-        } else if (!state.enemy && !enemies.length) {
-            win();
-            return;
+            break;
         }
-
-        gameplay();
+        case '010': {
+            win();
+            break;
+        }
+        case '110': {
+            await fight();
+            gameplay();
+            break;
+        }
+        default:
+            break;
     }
 };
 

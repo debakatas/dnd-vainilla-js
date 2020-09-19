@@ -1,5 +1,6 @@
 import { DOMList, magicText, clearText } from './DOM';
 import state from './state';
+import Item from './Item';
 
 class Enemy {
     constructor({ name, img, sound, lp, dp, desc }, callback) {
@@ -24,17 +25,31 @@ class Enemy {
         if (callback) callback();
     }
 
-    inflictDamage() {
-        state.character.receiveDamage(this.dp);
-        return new Promise((res) => setTimeout(res, 1000));
+    async inflictDamage() {
+        await state.character.receiveDamage(this.dp);
     }
 
     receiveDamage(damage) {
         this.lp -= damage;
-        console.log(this.lp);
-        if (this.lp <= 0) {
-            Enemy.die();
-        }
+
+        DOMList.enemy.style.setProperty('--scale', 1);
+        DOMList.enemy.style.setProperty('--inversion', 1);
+
+        setTimeout(() => {
+            DOMList.enemy.style.setProperty('--scale', 0.8);
+            DOMList.enemy.style.setProperty('--inversion', 0);
+
+            if (this.lp <= 0) {
+                Item.create();
+                Enemy.die();
+            }
+        }, 300);
+
+        return new Promise((res) => {
+            setTimeout(() => {
+                res();
+            }, 1000);
+        });
     }
 
     static die() {

@@ -1,6 +1,5 @@
 const initialState = {
     enemy: null,
-    item: null,
     character: null,
     playing: false,
 };
